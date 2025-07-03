@@ -17,6 +17,18 @@ body {
   font-family: 'Inter', sans-serif;
   background: #111827;
   overflow-x: hidden;
+  cursor: none; /* Hide default cursor */
+}
+
+/* Keep default cursor for mobile devices */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+  
+  .custom-cursor {
+    display: none;
+  }
 }
 
 /* Custom utilities */

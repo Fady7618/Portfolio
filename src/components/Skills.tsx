@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Code2, Database, Globe, Palette, Smartphone, Zap } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -22,7 +23,7 @@ const Skills = () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: titleRef.current,
-          start: 'top 80%',
+          start: 'top 50%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -36,7 +37,7 @@ const Skills = () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.skills-grid',
-          start: 'top 80%',
+          start: 'top 50%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -69,12 +70,14 @@ const Skills = () => {
         { name: 'TypeScript', level: 90 },
         { name: 'JavaScript ES6+', level: 95 },
         { name: 'HTML5/CSS3', level: 98 },
+        { name: 'Angular', level: 80 },
       ],
     },
     {
       title: 'Styling & Design',
       icon: <Palette className="w-6 h-6" />,
       skills: [
+        { name: 'bootstrap', level: 95 },
         { name: 'Tailwind CSS', level: 92 },
         { name: 'Sass/SCSS', level: 88 },
         { name: 'CSS-in-JS', level: 85 },
@@ -143,11 +146,11 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="skills-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="skills-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6">
           {skillCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className="skill-category bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300"
+              className="skill-category bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300 mx-auto max-w-[350px] w-full"
             >
               <div className="flex items-center mb-6">
                 <div className="text-blue-400 mr-3">{category.icon}</div>

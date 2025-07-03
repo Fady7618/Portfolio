@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Code, Palette, Rocket, Coffee, Heart, Zap } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -19,8 +20,9 @@ const About = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 50%',
           toggleActions: 'play none none reverse',
+          // scrub: true,
         },
       });
 
@@ -28,7 +30,7 @@ const About = () => {
       tl.to(titleRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.4,
         ease: 'power2.out',
       });
 

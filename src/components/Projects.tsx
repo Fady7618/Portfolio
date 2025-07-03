@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -21,7 +22,7 @@ const Projects = () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: titleRef.current,
-          start: 'top 80%',
+          start: 'top 50%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -36,7 +37,7 @@ const Projects = () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.projects-grid',
-          start: 'top 80%',
+          start: 'top 50%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -48,21 +49,21 @@ const Projects = () => {
   const projects = [
     {
       title: 'E-Commerce Platform',
-      description: 'A full-featured e-commerce application built with React, TypeScript, and Stripe integration. Features include product catalog, shopping cart, user authentication, and secure checkout process.',
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Stripe', 'Node.js'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      description: 'A full-featured e-commerce application built with Angular, TypeScript, and Stripe integration. Features include product catalog, shopping cart, user authentication, and secure checkout process.',
+      image: 'src/assets/images/E-commerce.jpg',
+      technologies: ['Angular', 'TypeScript', 'bootstrap', 'Node.js','html','css'],
+      github: 'https://github.com/Fady7618/E-CommerceAngular',
+      live: 'https://e-commerce-seven-phi-59.vercel.app/',
       featured: true,
       stats: { stars: 234, forks: 45 },
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, team collaboration features, and advanced project analytics.',
-      image: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'Express'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      title: 'GenCare Health App',
+      description: 'GenCare is a software solution with an integrated AI solution that enables early detection and diagnosis of various congenital disorders. Beyond diagnosis, our software offers a suite of features to guide and support the mothers in maintaining a healthy pregnancy.',
+      image: 'src/assets/images/GenCare.jpg',
+      technologies: ['EJS', 'Node.js', 'MongoDB', 'Express' , 'Bootstrap', 'HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/Fady7618/GenCare-Project',
+      live: 'https://gencare-five.vercel.app',
       featured: true,
       stats: { stars: 189, forks: 32 },
     },
@@ -125,18 +126,18 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="projects-grid grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="projects-grid grid grid-cols-1 md:grid-cols-2 gap-9 md:gap-5 mb-12">
           {projects.filter(p => p.featured).map((project, index) => (
             <div
               key={index}
-              className="project-card group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-700/50 hover:border-gray-600 transition-all duration-500 transform hover:-translate-y-4 hover:scale-[1.02] perspective-1000"
+              className="project-card group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-gray-700/50 hover:border-gray-600 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.01] perspective-1000 max-w-md mx-auto w-full"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-52 object-cover object-top group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 flex space-x-2">
@@ -148,8 +149,8 @@ const Projects = () => {
                 </div>
               </div>
               
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
+              <div className="p-6 flex flex-col justify-betweeen">
+                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
                   {project.title}
                 </h3>
                 <p className="text-gray-300 mb-6 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
@@ -176,7 +177,7 @@ const Projects = () => {
                       className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group/link"
                     >
                       <Github size={18} className="group-hover/link:scale-110 transition-transform" />
-                      <span className="text-sm font-medium">Code</span>
+                      <span className="text-sm font-medium hidden md:inline-block">Code</span>
                     </a>
                     <a
                       href={project.live}
@@ -185,7 +186,7 @@ const Projects = () => {
                       className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors duration-200 group/link"
                     >
                       <ExternalLink size={18} className="group-hover/link:scale-110 transition-transform" />
-                      <span className="text-sm font-medium">Live Demo</span>
+                      <span className="text-sm font-medium hidden md:inline-block">Live Demo</span>
                     </a>
                   </div>
                   
@@ -205,11 +206,11 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-7">
           {projects.filter(p => !p.featured).map((project, index) => (
             <div
               key={index}
-              className="project-card group bg-gray-800/30 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-700/30 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105"
+              className="project-card group bg-gray-800/30 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-700/30 hover:border-gray-600 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 max-w-md mx-auto w-full"
             >
               <div className="relative overflow-hidden">
                 <img

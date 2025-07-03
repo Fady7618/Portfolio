@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import StickyElements from './components/StickyElements';
+import CursorDot from './components/CursorDot';
 import MouseGlow from './components/MouseGlow';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen relative overflow-x-hidden">
+      <CursorDot />
       <MouseGlow />
       <StickyElements />
       <Navigation />

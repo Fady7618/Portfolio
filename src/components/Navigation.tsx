@@ -60,10 +60,20 @@ const Navigation = () => {
     <nav className="navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Portfolio
-            </span>
+          <div className="flex-shrink-0 flex items-center">
+            <button
+              onClick={() => scrollToSection('hero')}
+              className="flex items-center focus:outline-none"
+            >
+              <img
+                src="/src/assets/code.png"
+                alt="Portfolio Logo"
+                className="h-8 w-auto mr-2 sm:mr-3"
+              />
+              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                Portfolio
+              </span>
+            </button>
           </div>
 
           {/* Desktop Navigation */}

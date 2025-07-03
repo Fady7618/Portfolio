@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { Github, Linkedin, Twitter, Mail, Copy, Check } from 'lucide-react';
+import { Github, Linkedin, Copy, Check } from 'lucide-react';
 
 const StickyElements = () => {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/Fady7618', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/fady-alfred', label: 'LinkedIn' }
   ];
 
   const handleEmailClick = async () => {
@@ -24,7 +23,7 @@ const StickyElements = () => {
   return (
     <>
       {/* Left Sidebar - Social Links */}
-      <div className="fixed left-5 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col items-center space-y-6">
+      <div className="fixed left-2.5 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col items-center space-y-6">
         <div className="w-px h-20 bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-60"></div>
         
         {socialLinks.map(({ icon: Icon, href, label }, index) => (
@@ -44,7 +43,7 @@ const StickyElements = () => {
       </div>
 
       {/* Right Sidebar - Email */}
-      <div className="fixed right-5 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col items-center space-y-6">
+      <div className="fixed right-2.5 top-1/2 transform -translate-y-1/2 z-40 hidden lg:flex flex-col items-center space-y-6">
         <div className="w-px h-20 bg-gradient-to-b from-transparent via-purple-400 to-transparent opacity-60"></div>
         
         <button

@@ -132,7 +132,7 @@ const Hero = () => {
     const projectsSection = document.getElementById('projects');
     if (projectsSection) {
       gsap.to(window, {
-        duration: 1,
+        duration: 0.2,
         scrollTo: { y: projectsSection, offsetY: 80 },
         ease: 'power2.inOut',
       });
@@ -151,7 +151,7 @@ const Hero = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Text Content */}
-          <div className="text-left ms-0">
+          <div className="text-left relative left-2 ms-0">
             <div className="mb-4">
               <p className="text-blue-400 font-mono text-lg mb-2">Hi, my name is</p>
               <h1

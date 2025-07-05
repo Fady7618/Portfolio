@@ -5,8 +5,8 @@ import * as THREE from 'three';
 const Character = () => {
   const meshRef = useRef<THREE.Group>(null);
   const typingRefs = useRef({
-    leftHand: null as THREE.Mesh | null,
-    rightHand: null as THREE.Mesh | null,
+    leftHand: null as THREE.Group | null,
+    rightHand: null as THREE.Group | null,
   });
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 });
 
@@ -43,8 +43,8 @@ const Character = () => {
       
       // Typing animation
       if (typingRefs.current.leftHand && typingRefs.current.rightHand) {
-        typingRefs.current.leftHand.position.y = 0.45 + Math.sin(state.clock.elapsedTime * 8) * 0.02;
-        typingRefs.current.rightHand.position.y = 0.45 + Math.sin((state.clock.elapsedTime + 0.5) * 8) * 0.02;
+        typingRefs.current.leftHand.position.y = 0.49 + Math.sin(state.clock.elapsedTime * 8) * 0.02;
+        typingRefs.current.rightHand.position.y = 0.49 + Math.sin((state.clock.elapsedTime + 0.5) * 8) * 0.02;
       }
     }
   });
@@ -130,7 +130,7 @@ const Character = () => {
         {/* Main hair volume */}
         <mesh position={[0, 0, -0.05]}>
           <sphereGeometry args={[0.32, 32, 32]} />
-          <meshStandardMaterial color="#8B4513" />
+          <meshStandardMaterial color="#202020" />
         </mesh>
         
         {/* Side styling */}
@@ -169,22 +169,79 @@ const Character = () => {
         <cylinderGeometry args={[0.05, 0.05, 0.3, 16]} />
         <meshStandardMaterial color="#d4a373" />
       </mesh>
-      
-      {/* Hands for typing */}
-      <mesh 
-        position={[-0.2, 0.45, 0.4]} 
+
+      {/* Hands with proper wrist connection - adjusted position to connect seamlessly */}
+      <group 
+        position={[-0.25, 0.49, 0.41]} 
+        rotation={[Math.PI * 0.25, 0, 0]}
         ref={(mesh) => { typingRefs.current.leftHand = mesh; }}
       >
-        <sphereGeometry args={[0.05, 16, 16]} />
-        <meshStandardMaterial color="#d4a373" />
-      </mesh>
-      <mesh 
-        position={[0.2, 0.45, 0.4]} 
+        {/* Palm */}
+        <mesh position={[0, 0, 0.05]}>
+          <boxGeometry args={[0.08, 0.02, 0.1]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        
+        {/* Thumb */}
+        <mesh position={[-0.04, 0, 0.02]} rotation={[0, 0, Math.PI * 0.2]}>
+          <cylinderGeometry args={[0.015, 0.015, 0.06, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        
+        {/* Fingers */}
+        <mesh position={[-0.02, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.07, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        <mesh position={[0, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.08, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        <mesh position={[0.02, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.075, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        <mesh position={[0.04, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.06, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+      </group>
+
+      <group 
+        position={[0.25, 0.49, 0.41]} 
+        rotation={[Math.PI * 0.25, 0, 0]}
         ref={(mesh) => { typingRefs.current.rightHand = mesh; }}
       >
-        <sphereGeometry args={[0.05, 16, 16]} />
-        <meshStandardMaterial color="#d4a373" />
-      </mesh>
+        {/* Palm */}
+        <mesh position={[0, 0, 0.05]}>
+          <boxGeometry args={[0.08, 0.02, 0.1]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        
+        {/* Thumb */}
+        <mesh position={[0.04, 0, 0.02]} rotation={[0, 0, -Math.PI * 0.2]}>
+          <cylinderGeometry args={[0.015, 0.015, 0.06, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        
+        {/* Fingers */}
+        <mesh position={[0.02, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.07, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        <mesh position={[0, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.08, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        <mesh position={[-0.02, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.075, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+        <mesh position={[-0.04, 0, 0.1]} rotation={[Math.PI * 0.1, 0, 0]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.06, 8]} />
+          <meshStandardMaterial color="#d4a373" />
+        </mesh>
+      </group>
       
       {/* Pants - black */}
       <mesh position={[0, 0.6, 0.1]} rotation={[0.3, 0, 0]}>

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Mouse } from 'lucide-react';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
-import Character3D from './Character3D';
+import CharacterModel from './CharacterModel';
 
 gsap.registerPlugin(TextPlugin);
 
@@ -192,10 +192,10 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 3D Character - Now visible on all screen sizes */}
+          {/* 3D Character - Replace the existing Character3D with the new model */}
           <div className="flex justify-center lg:justify-end">
             <div className="w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px]">
-              <Character3D />
+              <CharacterModel />
             </div>
           </div>
         </div>
@@ -204,7 +204,9 @@ const Hero = () => {
           onClick={scrollToAbout}
           className="scroll-arrow text-gray-400 hover:text-white transition-colors duration-300 absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <ArrowDown size={32} />
+          <div className="flex flex-col items-center">
+            <Mouse size={28} />
+          </div>
         </button>
       </div>
     </section>

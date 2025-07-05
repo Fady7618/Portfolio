@@ -14,6 +14,7 @@ const Skills = () => {
       gsap.set(titleRef.current, { opacity: 0, y: 50 });
       gsap.set('.skill-category', { opacity: 0, y: 50 });
       gsap.set('.progress-bar', { width: 0 });
+      gsap.set('.percentage-counter', { innerText: '0' });
 
       // Title animation
       gsap.to(titleRef.current, {
@@ -23,7 +24,7 @@ const Skills = () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: titleRef.current,
-          start: 'top 50%',
+          start: 'top 70%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -37,24 +38,43 @@ const Skills = () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.skills-grid',
-          start: 'top 50%',
+          start: 'top 70%',
           toggleActions: 'play none none reverse',
         },
       });
 
       // Progress bars animation
-      document.querySelectorAll('.progress-bar').forEach((bar) => {
+      document.querySelectorAll('.progress-bar').forEach((bar, index) => {
         const percentage = bar.getAttribute('data-percentage') || '0';
-        gsap.to(bar, {
-          width: `${percentage}%`,
-          duration: 1.5,
-          ease: 'power2.out',
+        const percentageCounter = document.querySelectorAll('.percentage-counter')[index] as HTMLElement;
+        
+        // Create a timeline for synchronized animations
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: bar,
             start: 'top 80%',
             toggleActions: 'play none none reverse',
-          },
+          }
         });
+        
+        // Add the progress bar animation
+        tl.to(bar, {
+          width: `${percentage}%`,
+          duration: 1.5,
+          ease: 'power2.out',
+        });
+        
+        // Add the counter animation
+        tl.to(percentageCounter, {
+          innerText: percentage,
+          duration: 1.5,
+          ease: 'power2.out',
+          snap: { innerText: 1 }, // Snap to integers during animation
+          onUpdate: function() {
+            // Ensure the percentage sign stays after the number
+            percentageCounter.innerHTML = `${Math.round(Number(percentageCounter.innerText))}%`;
+          }
+        }, 0); // Start at the same time as the progress bar animation
       });
     }, sectionRef);
 
@@ -162,7 +182,9 @@ const Skills = () => {
                   <div key={skillIndex}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-gray-300 font-medium">{skill.name}</span>
-                      <span className="text-blue-400 text-sm font-semibold">{skill.level}%</span>
+                      <span className="text-blue-400 text-sm font-semibold">
+                        <span className="percentage-counter">{skill.level}</span>%
+                      </span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
                       <div

@@ -32,7 +32,7 @@ const Projects = () => {
         opacity: 1,
         y: 0,
         rotationX: 0,
-        duration: 1,
+        duration: 0.4,
         stagger: 0.2,
         ease: 'power2.out',
         scrollTrigger: {
@@ -49,7 +49,7 @@ const Projects = () => {
   const projects = [
     {
       title: 'E-Commerce Platform',
-      description: 'A full-featured e-commerce application built with Angular, TypeScript, and Stripe integration. Features include product catalog, shopping cart, user authentication, and secure checkout process.',
+      description: 'A full-featured e-commerce application built with Angular, TypeScript. Features include product catalog, shopping cart, user authentication, and secure checkout process, Responsive Bootstrap design',
       image: 'src/assets/images/E-commerce.jpg',
       technologies: ['Angular', 'TypeScript', 'bootstrap', 'Node.js','html','css'],
       github: 'https://github.com/Fady7618/E-CommerceAngular',

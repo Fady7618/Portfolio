@@ -48,7 +48,7 @@ const Navigation = () => {
     const element = document.getElementById(id);
     if (element) {
       gsap.to(window, {
-        duration: 1,
+        duration: 0.2,
         scrollTo: { y: element, offsetY: 80 },
         ease: 'power2.inOut',
       });

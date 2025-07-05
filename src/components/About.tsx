@@ -109,7 +109,7 @@ const About = () => {
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               I'm a passionate frontend developer with over 5 years of experience creating
               digital experiences that combine beautiful design with robust functionality.
-              I specialize in React, TypeScript, and modern web technologies.
+              I specialize in React, javascript, and modern web technologies.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
               When I'm not coding, you can find me exploring new technologies, contributing
@@ -119,11 +119,11 @@ const About = () => {
           </div>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 ">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="about-card group bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-gray-600 transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 perspective-1000"
+              className="about-card group bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-gray-700/50 hover:border-gray-600 transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 perspective-1000 max-w-[350px] mx-auto w-full"
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className={`inline-flex p-4 rounded-xl bg-gradient-to-r ${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>

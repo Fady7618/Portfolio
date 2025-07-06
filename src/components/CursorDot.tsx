@@ -44,13 +44,13 @@ const CursorDot = () => {
     };
     
     const handleMouseDown = () => {
-      gsap.to(dot, { scale: 0.7, duration: 0.15 });
-      gsap.to(dotOutline, { scale: 1.4, duration: 0.15 });
+      gsap.to(dot, { scale: 0.7, duration: 0.1 });
+      gsap.to(dotOutline, { scale: 1.4, duration: 0.1 });
     };
     
     const handleMouseUp = () => {
-      gsap.to(dot, { scale: 1, duration: 0.15 });
-      gsap.to(dotOutline, { scale: 1, duration: 0.15 });
+      gsap.to(dot, { scale: 1, duration: 0.1 });
+      gsap.to(dotOutline, { scale: 1, duration: 0.1 });
     };
     
     const handleMouseEnterLink = () => {

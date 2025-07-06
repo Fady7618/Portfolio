@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone, Send, Github, Linkedin } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swal from 'sweetalert2';
+import meImg from '../assets/images/me.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -310,7 +311,7 @@ const Contact = () => {
               <div className="relative rounded-2xl overflow-hidden border-2 border-gray-700/50 shadow-xl transform transition-all duration-700 z-10">
                 <img
                   ref={imageRef}
-                  src="src/assets/images/me.png" 
+                  src={meImg} 
                   alt="Profile"
                   className="w-full max-h-[350px] object-cover object-center"
                 />

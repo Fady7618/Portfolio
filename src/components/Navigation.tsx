@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import codeImg from '../assets/code.png';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,7 +67,7 @@ const Navigation = () => {
               className="flex items-center focus:outline-none"
             >
               <img
-                src="/src/assets/code.png"
+                src={codeImg}
                 alt="Portfolio Logo"
                 className="h-8 w-auto mr-2 sm:mr-3"
               />

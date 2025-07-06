@@ -4,6 +4,12 @@ import { FaReact, FaAngular, FaNodeJs, FaHtml5, FaCss3 } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiMongodb, SiExpress, SiTailwindcss, SiBootstrap } from 'react-icons/si';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Import images
+import ecommerceImg from '../assets/images/E-commerce.jpg';
+import gencareImg from '../assets/images/GenCare.jpg';
+import portfolioImg from '../assets/images/Portfolio.jpg';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
@@ -76,7 +82,7 @@ const Projects = () => {
     {
       title: 'E-Commerce Platform',
       description: 'A full-featured e-commerce application built with Angular, TypeScript. Features include product catalog, shopping cart, user authentication, and secure checkout process, Responsive Bootstrap design',
-      image: 'src/assets/images/E-commerce.jpg',
+      image: ecommerceImg,
       technologies: ['Angular', 'TypeScript', 'bootstrap', 'Node.js','html','css','gsap'],
       github: 'https://github.com/Fady7618/E-CommerceAngular',
       live: 'https://e-commerce-seven-phi-59.vercel.app/',
@@ -86,7 +92,7 @@ const Projects = () => {
     {
       title: 'GenCare Health App',
       description: 'GenCare is a software solution with an integrated AI solution that enables early detection and diagnosis of various congenital disorders. Beyond diagnosis, our software offers a suite of features to guide and support the mothers in maintaining a healthy pregnancy.',
-      image: 'src/assets/images/GenCare.jpg',
+      image: gencareImg,
       technologies: ['EJS', 'Node.js', 'MongoDB', 'Express' , 'Bootstrap', 'HTML', 'CSS', 'JavaScript'],
       github: 'https://github.com/Fady7618/GenCare-Project',
       live: 'https://gencare-five.vercel.app',
@@ -96,7 +102,7 @@ const Projects = () => {
     {
       title: 'Portfolio',
       description: 'A personal portfolio website showcasing my skills, projects, and experience. Built with React, Tailwind CSS, and GSAP for smooth animations.',
-      image: 'src/assets/images/Portfolio.jpg',
+      image: portfolioImg,
       technologies: ['React', 'Tailwind CSS', 'GSAP', 'Typescript'],
       github: 'https://github.com/Fady7618/Portfolio',
       live: 'https://portfolio-five-zeta-79.vercel.app',

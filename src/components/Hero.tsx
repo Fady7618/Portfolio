@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { ArrowDown, Mouse } from 'lucide-react';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
-import CharacterModel from './CharacterModel';
+import CodeEditor from './CodeEditor';
 
 gsap.registerPlugin(TextPlugin);
 
@@ -192,10 +192,10 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* 3D Character - Replace the existing Character3D with the new model */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px]">
-              <CharacterModel />
+          {/* Code Editor - Updated with self-center to match text height */}
+          <div className="flex justify-center lg:justify-end self-center"> {/* Added self-center */}
+            <div className="w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px] ">
+              <CodeEditor />
             </div>
           </div>
         </div>

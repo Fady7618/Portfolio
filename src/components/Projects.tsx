@@ -99,7 +99,7 @@ const Projects = () => {
       image: 'src/assets/images/Portfolio.jpg',
       technologies: ['React', 'Tailwind CSS', 'GSAP', 'Typescript'],
       github: 'https://github.com/Fady7618/Portfolio',
-      live: 'https://portfolio-fady7618.vercel.app/',
+      live: 'https://portfolio-five-zeta-79.vercel.app',
       featured: true,
       stats: { stars: 120, forks: 25 },
     }

@@ -3,9 +3,15 @@ import { Mail, MapPin, Phone, Send, Github, Linkedin } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swal from 'sweetalert2';
+import emailjs from '@emailjs/browser';
 import meImg from '../assets/images/me.png';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Add these values from your EmailJS account
+const SERVICE_ID = "service_not7eme";
+const TEMPLATE_ID = "template_onauywk"; 
+const PUBLIC_KEY = "39pJ4gQDlaOUsuL69";
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -188,8 +194,20 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          name: formData.name,           // {{name}} in template
+          email: formData.email,         // {{email}} in template
+          title: formData.subject,       // {{title}} in template 
+          message: formData.message,     // {{message}} in template
+        },
+        PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result.text);
 
       // Reset form
       setFormData({
@@ -205,15 +223,17 @@ const Contact = () => {
         text: 'Thanks for reaching out. I\'ll get back to you soon!',
         icon: 'success',
         confirmButtonText: 'Great!',
-        background: '#1f2937', // Dark background to match your theme
-        color: '#fff',         // White text
-        iconColor: '#60a5fa',  // Blue icon
-        confirmButtonColor: '#4f46e5', // Purple button
+        background: '#1f2937',
+        color: '#fff',
+        iconColor: '#60a5fa',
+        confirmButtonColor: '#4f46e5',
         customClass: {
           popup: 'rounded-xl border border-gray-700',
         }
       });
     } catch (error) {
+      console.error('Email sending failed:', error);
+      
       // Show error message with SweetAlert2
       Swal.fire({
         title: 'Oops!',
@@ -222,7 +242,7 @@ const Contact = () => {
         confirmButtonText: 'OK',
         background: '#1f2937',
         color: '#fff',
-        iconColor: '#ef4444', // Red for error
+        iconColor: '#ef4444',
         confirmButtonColor: '#4f46e5',
         customClass: {
           popup: 'rounded-xl border border-gray-700',

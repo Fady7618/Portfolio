@@ -71,7 +71,7 @@ const Navigation = () => {
                 className="h-8 w-auto mr-2 sm:mr-3"
               />
               <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Portfolio
+                Fady Alfred
               </span>
             </button>
           </div>

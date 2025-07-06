@@ -1,10 +1,36 @@
 import { useEffect, useRef } from 'react';
-import { ExternalLink, Github, Star, GitFork } from 'lucide-react';
+import { ExternalLink, Github, Star, GitFork, Globe } from 'lucide-react';
+import { FaReact, FaAngular, FaNodeJs, FaHtml5, FaCss3 } from 'react-icons/fa';
+import { SiTypescript, SiJavascript, SiMongodb, SiExpress, SiTailwindcss, SiBootstrap } from 'react-icons/si';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
+  // Tech icon mapping
+  const getTechIcon = (tech: string) => {
+    const normalizedTech = tech.toLowerCase();
+    const iconMap: Record<string, JSX.Element> = {
+      'react': <FaReact className="text-blue-400" />,
+      'angular': <FaAngular className="text-red-500" />,
+      'javascript': <SiJavascript className="text-yellow-400" />,
+      'typescript': <SiTypescript className="text-blue-500" />,
+      'node.js': <FaNodeJs className="text-green-500" />,
+      'mongodb': <SiMongodb className="text-green-400" />,
+      'express': <SiExpress className="text-gray-400" />,
+      'html': <FaHtml5 className="text-orange-500" />,
+      'css': <FaCss3 className="text-blue-500" />,
+      'bootstrap': <SiBootstrap className="text-purple-500" />,
+      'tailwind css': <SiTailwindcss className="text-cyan-400" />,
+      'gsap': <SiJavascript className="text-green-300" />, // Using JS icon as placeholder for GSAP
+      'ejs': <SiJavascript className="text-yellow-300" />, // Using JS icon as placeholder for EJS
+      // Add more mappings as needed
+    };
+    
+    // Default icon for technologies without specific mappings
+    return iconMap[normalizedTech] || <Globe size={14} className="text-gray-400" />;
+  };
+  
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
@@ -68,45 +94,15 @@ const Projects = () => {
       stats: { stars: 189, forks: 32 },
     },
     {
-      title: 'Weather Dashboard',
-      description: 'A responsive weather dashboard with location-based forecasts, interactive charts, beautiful animations, and detailed weather analytics powered by modern APIs.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Vue.js', 'Chart.js', 'Weather API', 'CSS3', 'PWA'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: false,
-      stats: { stars: 156, forks: 28 },
-    },
-    {
-      title: 'Social Media Dashboard',
-      description: 'A comprehensive social media analytics dashboard with real-time data visualization, user engagement metrics, content scheduling, and performance insights.',
-      image: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'D3.js', 'Firebase', 'Material-UI', 'Analytics'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: false,
-      stats: { stars: 298, forks: 67 },
-    },
-    {
-      title: 'Learning Management System',
-      description: 'An educational platform with course management, progress tracking, interactive quizzes, video streaming capabilities, and comprehensive student analytics.',
-      image: 'https://images.pexels.com/photos/301926/pexels-photo-301926.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind CSS', 'Video.js'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      title: 'Portfolio',
+      description: 'A personal portfolio website showcasing my skills, projects, and experience. Built with React, Tailwind CSS, and GSAP for smooth animations.',
+      image: 'src/assets/images/Portfolio.jpg',
+      technologies: ['React', 'Tailwind CSS', 'GSAP', 'Typescript'],
+      github: 'https://github.com/Fady7618/Portfolio',
+      live: 'https://portfolio-fady7618.vercel.app/',
       featured: true,
-      stats: { stars: 412, forks: 89 },
-    },
-    {
-      title: 'AI-Powered Chat App',
-      description: 'An intelligent chat application with AI-powered responses, real-time messaging, file sharing, voice messages, and advanced conversation analytics.',
-      image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'OpenAI API', 'WebSocket', 'Redis', 'Docker'],
-      github: 'https://github.com',
-      live: 'https://example.com',
-      featured: true,
-      stats: { stars: 567, forks: 123 },
-    },
+      stats: { stars: 120, forks: 25 },
+    }
   ];
 
   return (
@@ -157,12 +153,14 @@ const Projects = () => {
                   {project.description}
                 </p>
                 
+                {/* For featured projects - update the technology badges */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300"
+                      className="px-3 py-1.5 text-xs font-medium bg-gradient-to-br from-gray-800 to-gray-700 border border-blue-500/20 text-gray-200 rounded-lg hover:from-blue-900/30 hover:to-purple-900/30 hover:border-blue-400/40 transition-all duration-300 flex items-center gap-1.5 shadow-sm"
                     >
+                      {getTechIcon(tech)}
                       {tech}
                     </span>
                   ))}
@@ -229,17 +227,19 @@ const Projects = () => {
                   {project.description}
                 </p>
                 
+                {/* For non-featured projects - update the technology badges */}
                 <div className="flex flex-wrap gap-1 mb-4">
                   {project.technologies.slice(0, 3).map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 text-xs font-medium bg-blue-600/20 text-blue-300 rounded-md"
+                      className="px-2 py-1 text-xs font-medium bg-gray-800/70 border border-gray-700 text-gray-300 rounded-md flex items-center gap-1 hover:bg-gray-700/70 hover:border-blue-500/30 transition-all duration-200"
                     >
+                      {getTechIcon(tech)}
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 text-xs font-medium bg-gray-600/20 text-gray-400 rounded-md">
+                    <span className="px-2 py-1 text-xs font-medium bg-gray-800/70 border border-gray-700 text-gray-400 rounded-md hover:bg-gray-700/70 transition-all duration-200">
                       +{project.technologies.length - 3}
                     </span>
                   )}

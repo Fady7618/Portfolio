@@ -264,8 +264,8 @@ const Contact = () => {
     {
       icon: <Phone className="text-blue-400 w-5 h-5" />,
       title: 'Phone',
-      details: '+20 1095351591',
-      link: 'tel:+201095351591',
+      details: '+20 1095351501',
+      link: 'tel:+201095351501',
     },
     {
       icon: <MapPin className="text-blue-400 w-5 h-5" />,

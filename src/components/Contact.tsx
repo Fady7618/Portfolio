@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swal from 'sweetalert2';
 import emailjs from '@emailjs/browser';
+import { validateEmailWithZeroBounce } from '../utils/emailValidation';
 import meImg from '../assets/images/me.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,6 +28,12 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [emailValidationState, setEmailValidationState] = useState({
+    isValidating: false,
+    isValid: true,
+    message: ''
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -189,8 +196,60 @@ const Contact = () => {
     }));
   };
 
+  // Add this function to validate email
+  const validateEmail = async (email: string) => {
+    if (!email) return false;
+    
+    setEmailValidationState({
+      isValidating: true,
+      isValid: true,
+      message: ''
+    });
+    
+    const apiKey = import.meta.env.VITE_ZEROBOUNCE_API_KEY;
+    
+    if (!apiKey) {
+      console.error('ZeroBounce API key not found');
+      setEmailValidationState({
+        isValidating: false,
+        isValid: true,
+        message: ''
+      });
+      return true;
+    }
+    
+    const result = await validateEmailWithZeroBounce(email, apiKey);
+    
+    setEmailValidationState({
+      isValidating: false,
+      isValid: result.isValid,
+      message: result.message
+    });
+    
+    return result.isValid;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // First validate email
+    const isEmailValid = await validateEmail(formData.email);
+    
+    if (!isEmailValid) {
+      // Show validation error
+      Swal.fire({
+        title: 'Invalid Email',
+        text: 'Please provide a valid email address.',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        background: '#1f2937',
+        color: '#fff',
+        iconColor: '#f59e0b',
+        confirmButtonColor: '#4f46e5'
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -368,16 +427,37 @@ const Contact = () => {
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                     Email
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
-                    placeholder="your.email@example.com"
-                  />
+                  <div className="relative">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        // Reset validation state on change
+                        setEmailValidationState({
+                          isValidating: false,
+                          isValid: true,
+                          message: ''
+                        });
+                      }}
+                      onBlur={(e) => validateEmail(e.target.value)}
+                      required
+                      className={`w-full px-4 py-3 bg-gray-800 border ${
+                        emailValidationState.isValid ? 'border-gray-600' : 'border-red-500'
+                      } rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
+                      placeholder="your.email@example.com"
+                    />
+                    {emailValidationState.isValidating && (
+                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-400"></div>
+                      </div>
+                    )}
+                  </div>
+                  {!emailValidationState.isValid && (
+                    <p className="mt-1 text-sm text-red-400">{emailValidationState.message}</p>
+                  )}
                 </div>
               </div>
 

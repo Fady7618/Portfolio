@@ -1,15 +1,24 @@
 export async function validateEmailWithZeroBounce(
   email: string
 ): Promise<{ isValid: boolean; message: string }> {
-  // Basic email validation regex as fallback
+  // Basic email validation regex 
   const isEmailFormatValid = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+  // Use basic validation for production
+  if (window.location.hostname !== 'localhost') {
+    return {
+      isValid: isEmailFormatValid(email),
+      message: isEmailFormatValid(email) ? '' : 'Please enter a valid email address'
+    };
+  }
+
   try {
-    // Use the API route to avoid CORS issues
+    // For local development only - won't work in production
+    const apiKey = import.meta.env.VITE_ZEROBOUNCE_API;
     const response = await fetch(
-      `/api/validate-email?email=${encodeURIComponent(email)}`
+      `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
     );
     
     if (!response.ok) {
@@ -17,16 +26,6 @@ export async function validateEmailWithZeroBounce(
     }
     
     const data = await response.json();
-    
-    // ZeroBounce status codes
-    // 'valid' - Email is valid
-    // 'invalid' - Email is invalid
-    // 'catch-all' - Domain has a catch-all policy
-    // 'unknown' - Email validity unknown
-    // 'spamtrap' - Email is a spam trap
-    // 'abuse' - Email is associated with abuse
-    // 'do_not_mail' - Do not mail this email
-    
     const validStatuses = ['valid', 'catch-all'];
     const isValid = validStatuses.includes(data.status?.toLowerCase());
     
@@ -37,7 +36,7 @@ export async function validateEmailWithZeroBounce(
   } catch (error) {
     console.error('ZeroBounce API error:', error);
     
-    // Fall back to basic validation if API fails
+    // Fall back to basic validation
     const isValid = isEmailFormatValid(email);
     return {
       isValid,

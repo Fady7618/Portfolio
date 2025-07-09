@@ -206,7 +206,7 @@ const Contact = () => {
       message: ''
     });
     
-    const apiKey = import.meta.env.ZEROBOUNCE_API;
+    const apiKey = import.meta.env.VITE_ZEROBOUNCE_API;
     
     if (!apiKey) {
       console.error('ZeroBounce API key not found');

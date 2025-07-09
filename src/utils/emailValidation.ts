@@ -3,10 +3,8 @@ export async function validateEmailWithZeroBounce(
   apiKey: string
 ): Promise<{ isValid: boolean; message: string }> {
   try {
-    // Use a CORS proxy service
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const response = await fetch(
-      `${proxyUrl}https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
+      `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
     );
     
     if (!response.ok) {

@@ -1,24 +1,12 @@
 export async function validateEmailWithZeroBounce(
-  email: string
+  email: string,
+  apiKey: string
 ): Promise<{ isValid: boolean; message: string }> {
-  // Basic email validation regex 
-  const isEmailFormatValid = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
-
-  // Use basic validation for production
-  if (window.location.hostname !== 'localhost') {
-    return {
-      isValid: isEmailFormatValid(email),
-      message: isEmailFormatValid(email) ? '' : 'Please enter a valid email address'
-    };
-  }
-
   try {
-    // For local development only - won't work in production
-    const apiKey = import.meta.env.VITE_ZEROBOUNCE_API;
+    // Use a CORS proxy service
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const response = await fetch(
-      `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
+      `${proxyUrl}https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
     );
     
     if (!response.ok) {
@@ -26,6 +14,16 @@ export async function validateEmailWithZeroBounce(
     }
     
     const data = await response.json();
+    
+    // ZeroBounce status codes
+    // 'valid' - Email is valid
+    // 'invalid' - Email is invalid
+    // 'catch-all' - Domain has a catch-all policy
+    // 'unknown' - Email validity unknown
+    // 'spamtrap' - Email is a spam trap
+    // 'abuse' - Email is associated with abuse
+    // 'do_not_mail' - Do not mail this email
+    
     const validStatuses = ['valid', 'catch-all'];
     const isValid = validStatuses.includes(data.status?.toLowerCase());
     
@@ -35,12 +33,10 @@ export async function validateEmailWithZeroBounce(
     };
   } catch (error) {
     console.error('ZeroBounce API error:', error);
-    
-    // Fall back to basic validation
-    const isValid = isEmailFormatValid(email);
+    // If API call fails, return valid so the form still works
     return {
-      isValid,
-      message: isValid ? '' : 'Please enter a valid email address'
+      isValid: true,
+      message: ''
     };
   }
 }

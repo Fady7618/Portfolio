@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Swal from 'sweetalert2';
 import emailjs from '@emailjs/browser';
-import { validateEmailWithZeroBounce } from '../utils/emailValidation';
+
 import meImg from '../assets/images/me.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,8 +29,8 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Simple validation state
   const [emailValidationState, setEmailValidationState] = useState({
-    isValidating: false,
     isValid: true,
     message: ''
   });
@@ -194,46 +194,36 @@ const Contact = () => {
       ...prev,
       [name]: value,
     }));
-  };
-
-  // Add this function to validate email
-  const validateEmail = async (email: string) => {
-    if (!email) return false;
     
-    setEmailValidationState({
-      isValidating: true,
-      isValid: true,
-      message: ''
-    });
-    
-    const apiKey = import.meta.env.VITE_ZEROBOUNCE_API;
-    
-    if (!apiKey) {
-      console.error('ZeroBounce API key not found');
+    // Reset validation on email change
+    if (name === 'email') {
       setEmailValidationState({
-        isValidating: false,
         isValid: true,
         message: ''
       });
-      return true;
     }
+  };
+
+  // Simple email validation function
+  const validateEmail = (email: string): boolean => {
+    if (!email) return false;
     
-    const result = await validateEmailWithZeroBounce(email, apiKey);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValid = emailRegex.test(email);
     
     setEmailValidationState({
-      isValidating: false,
-      isValid: result.isValid,
-      message: result.message
+      isValid: isValid,
+      message: isValid ? '' : 'Please enter a valid email address'
     });
     
-    return result.isValid;
+    return isValid;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // First validate email
-    const isEmailValid = await validateEmail(formData.email);
+    // Validate email before submission
+    const isEmailValid = validateEmail(formData.email);
     
     if (!isEmailValid) {
       // Show validation error
@@ -433,15 +423,7 @@ const Contact = () => {
                       id="email"
                       name="email"
                       value={formData.email}
-                      onChange={(e) => {
-                        handleInputChange(e);
-                        // Reset validation state on change
-                        setEmailValidationState({
-                          isValidating: false,
-                          isValid: true,
-                          message: ''
-                        });
-                      }}
+                      onChange={handleInputChange}
                       onBlur={(e) => validateEmail(e.target.value)}
                       required
                       className={`w-full px-4 py-3 bg-gray-800 border ${
@@ -449,11 +431,6 @@ const Contact = () => {
                       } rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
                       placeholder="your.email@example.com"
                     />
-                    {emailValidationState.isValidating && (
-                      <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-400"></div>
-                      </div>
-                    )}
                   </div>
                   {!emailValidationState.isValid && (
                     <p className="mt-1 text-sm text-red-400">{emailValidationState.message}</p>

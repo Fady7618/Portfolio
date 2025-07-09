@@ -1,10 +1,15 @@
 export async function validateEmailWithZeroBounce(
-  email: string,
-  apiKey: string
+  email: string
 ): Promise<{ isValid: boolean; message: string }> {
+  // Basic email validation regex as fallback
+  const isEmailFormatValid = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   try {
+    // Use the API route to avoid CORS issues
     const response = await fetch(
-      `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
+      `/api/validate-email?email=${encodeURIComponent(email)}`
     );
     
     if (!response.ok) {
@@ -31,10 +36,12 @@ export async function validateEmailWithZeroBounce(
     };
   } catch (error) {
     console.error('ZeroBounce API error:', error);
-    // If API call fails, return valid so the form still works
+    
+    // Fall back to basic validation if API fails
+    const isValid = isEmailFormatValid(email);
     return {
-      isValid: true,
-      message: ''
+      isValid,
+      message: isValid ? '' : 'Please enter a valid email address'
     };
   }
 }

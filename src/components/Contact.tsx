@@ -218,7 +218,8 @@ const Contact = () => {
       return true;
     }
     
-    const result = await validateEmailWithZeroBounce(email, apiKey);
+    // Remove the apiKey parameter from here
+    const result = await validateEmailWithZeroBounce(email);
     
     setEmailValidationState({
       isValidating: false,

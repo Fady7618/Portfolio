@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,12 +11,23 @@ import MouseGlow from './components/MouseGlow';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { TextPlugin } from 'gsap/TextPlugin';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother, TextPlugin);
 
 function App() {
+  const smoothWrapper = useRef(null);
+  const smoothContent = useRef(null);
+
+  
   useEffect(() => {
+    const smoother = ScrollSmoother.create({
+      wrapper: smoothWrapper.current,
+      content: smoothContent.current,
+      smooth: 0.5, // Smoothness factor
+      effects: true, // Enable effects like parallax
+    });
     // Smooth scrolling setup
     gsap.set('body', { overflow: 'auto' });
     
@@ -29,16 +40,17 @@ function App() {
     
     return () => {
       window.removeEventListener('resize', handleResize);
+      smoother.kill(); // Clean up the smoother instance
     };
   }, []);
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen relative overflow-x-hidden">
+    <div className=" min-h-screen relative overflow-x-hidden" ref={smoothWrapper}>
       <CursorDot />
       <MouseGlow />
       <StickyElements />
       <Navigation />
-      <main>
+      <main ref={smoothContent}>
         <Hero />
         <About />
         <Projects />

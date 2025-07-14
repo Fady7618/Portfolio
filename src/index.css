@@ -46,9 +46,9 @@ body {
 }
 
 /* Smooth scrolling */
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 /* Enhanced hover effects with 3D transforms */
 .project-card:hover {

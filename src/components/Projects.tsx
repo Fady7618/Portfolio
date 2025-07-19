@@ -81,9 +81,9 @@ const Projects = () => {
   const projects = [
     {
       title: 'E-Commerce Platform',
-      description: 'A full-featured e-commerce application built with Angular, TypeScript. Features include product catalog, shopping cart, user authentication, and secure checkout process, Responsive Bootstrap design',
+      description: 'A full stack e-commerce application built with Angular, TypeScript. Features include product catalog, shopping cart, user authentication, and secure checkout process, Responsive Bootstrap design',
       image: ecommerceImg,
-      technologies: ['Angular', 'TypeScript', 'bootstrap', 'Node.js','html','css','gsap'],
+      technologies: ['Angular', 'TypeScript', 'javascript','mongodb','express','bootstrap', 'Node.js','html','css','gsap'],
       github: 'https://github.com/Fady7618/E-CommerceAngular',
       live: 'https://e-commerce-seven-phi-59.vercel.app/',
       featured: true,

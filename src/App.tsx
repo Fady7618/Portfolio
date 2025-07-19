@@ -25,7 +25,7 @@ function App() {
     const smoother = ScrollSmoother.create({
       wrapper: smoothWrapper.current,
       content: smoothContent.current,
-      smooth: 0.5, // Smoothness factor
+      smooth: 1, // Smoothness factor
       effects: true, // Enable effects like parallax
     });
     // Smooth scrolling setup

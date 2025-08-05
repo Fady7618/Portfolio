@@ -10,6 +10,7 @@ import ecommerceImg from '../assets/images/E-commerce.jpg';
 import gencareImg from '../assets/images/GenCare.jpg';
 import portfolioImg from '../assets/images/Portfolio.jpg';
 import spotifyImg from '../assets/images/Spotify.jpg';
+import scoopImg from '../assets/images/Scoop.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,6 +108,16 @@ const Projects = () => {
       technologies: ['React', 'Tailwind CSS', 'gsap', 'Spotify API', 'Typescript', 'Node.js'],
       github: 'https://github.com/Fady7618/Spotify-App', // Add your GitHub repo link if available
       live: 'https://spotifyapp-flax.vercel.app/',
+      featured: true,
+      stats: { stars: 0, forks: 0 },
+    },
+    {
+      title: 'Scoop Ice Cream Shop',
+      description: 'Scoop is a modern ice cream shop website featuring smooth GSAP-powered scroll animations, a vibrant product gallery, and a responsive design for a delightful user experience.',
+      image: scoopImg,
+      technologies: ['React', 'GSAP', 'Tailwind CSS', 'JavaScript'],
+      github: '', // Add your GitHub repo link if available
+      live: '',   // Add your live demo link if available
       featured: true,
       stats: { stars: 0, forks: 0 },
     },

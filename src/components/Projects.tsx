@@ -115,9 +115,9 @@ const Projects = () => {
       title: 'Scoop Ice Cream Shop',
       description: 'Scoop is a modern ice cream shop website featuring smooth GSAP-powered scroll animations, a vibrant product gallery, and a responsive design for a delightful user experience.',
       image: scoopImg,
-      technologies: ['React', 'GSAP', 'Tailwind CSS', 'JavaScript'],
-      github: '', // Add your GitHub repo link if available
-      live: '',   // Add your live demo link if available
+      technologies: ['React', 'GSAP', 'SCSS', 'JavaScript', 'Bootstrap'],
+      github: 'https://github.com/Fady7618/Scoop', // Add your GitHub repo link if available
+      live: 'https://scoop-phi.vercel.app/',   // Add your live demo link if available
       featured: true,
       stats: { stars: 0, forks: 0 },
     },

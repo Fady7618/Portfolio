@@ -105,7 +105,7 @@ const Projects = () => {
       description: 'A Spotify-inspired music streaming web app clone. Features include authentication, playlists, search, and a responsive UI. Built with React, Tailwind CSS, and integrates with the Spotify API for real music data.',
       image: spotifyImg,
       technologies: ['React', 'Tailwind CSS', 'gsap', 'Spotify API', 'Typescript', 'Node.js'],
-      github: '', // Add your GitHub repo link if available
+      github: 'https://github.com/Fady7618/Spotify-App', // Add your GitHub repo link if available
       live: 'https://spotifyapp-flax.vercel.app/',
       featured: true,
       stats: { stars: 0, forks: 0 },

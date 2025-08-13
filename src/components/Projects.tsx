@@ -11,6 +11,8 @@ import gencareImg from '../assets/images/GenCare.jpg';
 import portfolioImg from '../assets/images/Portfolio.jpg';
 import spotifyImg from '../assets/images/Spotify.jpg';
 import scoopImg from '../assets/images/Scoop.png';
+import photographyImg from '../assets/images/Photography.png';
+import { features } from 'process';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,6 +92,16 @@ const Projects = () => {
       live: 'https://e-commerce-seven-phi-59.vercel.app/',
       featured: true,
       stats: { stars: 234, forks: 45 },
+    },
+    {
+      title: 'Photoghraphy Website',
+      description:'A modern photography website showcasing stunning images with a clean, responsive design. Features smooth GSAP animations, a dynamic gallery, and a user-friendly interface built with React and Tailwind CSS.',
+      image: photographyImg,
+      technologies: ['React','TypeScript', 'Tailwind CSS', 'GSAP', 'JavaScript'],
+      github:'https://github.com/Fady7618/Photographer',
+      live: 'https://photographertmplt.vercel.app/',
+      featured: true,
+      stats: { stars: 98, forks: 12},
     },
     {
       title: 'GenCare Health App',

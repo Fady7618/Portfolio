@@ -51,7 +51,7 @@ const StickyElements = () => {
           className="group flex items-center space-x-2 p-3 text-gray-400 hover:text-purple-400 transition-all duration-300 hover:scale-110 hover:bg-gray-800/50 rounded-full backdrop-blur-sm"
           style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
         >
-          <span className="text-sm font-mono tracking-wider">factaguib@gmail.com</span>
+          <span className="text-sm font-mono tracking-wider">fadyalfred77@gmail.com</span>
           {emailCopied ? (
             <Check size={16} className="text-green-400" />
           ) : (

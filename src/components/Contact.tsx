@@ -10,9 +10,9 @@ import meImg from '../assets/images/me.png';
 gsap.registerPlugin(ScrollTrigger);
 
 // Add these values from your EmailJS account
-const SERVICE_ID = "service_not7eme";
-const TEMPLATE_ID = "template_onauywk"; 
-const PUBLIC_KEY = "39pJ4gQDlaOUsuL69";
+const SERVICE_ID = "service_iqudggs";
+const TEMPLATE_ID = "template_krhlmwc"; 
+const PUBLIC_KEY = "AO4GST5UWvpk9woy2";
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -307,8 +307,8 @@ const Contact = () => {
     {
       icon: <Mail className="text-blue-400 w-5 h-5" />,
       title: 'Email',
-      details: 'factaguib@gmail.com',
-      link: 'mailto:factaguib@gmail.com',
+      details: 'fadyalfred77@gmail.com',
+      link: 'mailto:fadyalfred77@gmail.com',
     },
     {
       icon: <Phone className="text-blue-400 w-5 h-5" />,

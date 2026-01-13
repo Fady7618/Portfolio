@@ -68,7 +68,7 @@ const Experience = () => {
   const currentJob = {
     title: 'Front End Engineer',
     company: 'Syscodeia',
-    location: 'Remote',
+    location: 'Onsite - Egypt',
     period: 'Oct 2025 - Present',
     type: 'Full Time',
     responsibilities: [

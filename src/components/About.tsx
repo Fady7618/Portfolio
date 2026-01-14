@@ -22,7 +22,6 @@ const About = () => {
           trigger: sectionRef.current,
           start: 'top 50%',
           toggleActions: 'play none none reverse',
-          // scrub: true,
         },
       });
 

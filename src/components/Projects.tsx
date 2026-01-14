@@ -12,7 +12,6 @@ import portfolioImg from '../assets/images/Portfolio.jpg';
 import spotifyImg from '../assets/images/Spotify.jpg';
 import scoopImg from '../assets/images/Scoop.png';
 import photographyImg from '../assets/images/Photography.png';
-import { features } from 'process';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,33 +49,32 @@ const Projects = () => {
       gsap.set(titleRef.current, { opacity: 0, y: 50 });
       gsap.set('.project-card', { opacity: 0, y: 80, rotationX: 15 });
 
-      // Title animation
-      gsap.to(titleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
+      // ScrollTrigger animation with timeline
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 50%',
+          trigger: sectionRef.current,
+          start: 'top 60%',
           toggleActions: 'play none none reverse',
         },
       });
 
+      // Title animation
+      tl.to(titleRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+      });
+
       // Project cards animation with 3D effect
-      gsap.to('.project-card', {
+      tl.to('.project-card', {
         opacity: 1,
         y: 0,
         rotationX: 0,
         duration: 0.4,
         stagger: 0.2,
         ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.projects-grid',
-          start: 'top 50%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+      }, '-=0.4');
     }, sectionRef);
 
     return () => ctx.revert();

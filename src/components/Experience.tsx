@@ -128,10 +128,7 @@ const Experience = () => {
 
   return (
     <section id="experience" ref={sectionRef} className="py-20 bg-gray-900 relative">
-      <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-400 via-transparent to-blue-400 opacity-20"></div>
-      <div className="absolute right-8 top-0 bottom-0 w-px bg-gradient-to-b from-purple-400 via-transparent to-purple-400 opacity-20"></div>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2
             ref={titleRef}
@@ -150,7 +147,7 @@ const Experience = () => {
         <div className="relative">
           <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-30 hidden sm:block"></div>
 
-          <div className="space-y-8">
+          <div className="flex flex-col gap-y-4 space-y-8">
             <div className="experience-item group">
               <div className="relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-xl border-2 border-blue-500/30 hover:border-blue-400/50 transition-all duration-500 ml-0 sm:ml-16">
                 <div className="absolute -left-3 top-8 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full border-4 border-gray-900 hidden sm:block group-hover:scale-125 transition-transform duration-300"></div>
@@ -161,7 +158,7 @@ const Experience = () => {
                   </span>
                 </div>
 
-                <div className="mb-4">
+                <div className="my-4 sm:mb-4 sm:mt-0">
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-purple-500 transition-all duration-300">
                     {currentJob.title}
                   </h3>
